@@ -1,14 +1,22 @@
-# Advent of Code
+# Advent of Code 2022
 
-Code to solve the [Advent of Code](https://adventofcode.com/) puzzles.
+Code to solve the [2022 Advent of Code](https://adventofcode.com/2022) puzzles.
 
 ## Puzzles
 
-* [2022 Puzzles](./2022/README.md)
-    * using Python
+* [Day 1: Calorie Counting](./day1/README.md)
 
 
 ## Install
+
+### Python
+
+Create a virtual environment, and install the Python dependancies.
+* setup a Python virtual enviroment
+* install the development dependancies
+```
+pip install -r requirements.txt
+```
 
 ### Pre-Commit
 
