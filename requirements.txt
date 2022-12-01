@@ -1,0 +1,10 @@
+black
+coverage
+factory-boy
+Faker
+flake8
+mock
+mypy
+pep8
+pylint
+pytest
