@@ -1,2 +1,5 @@
 # Configuration for bandit security checking tool
 exclude_dirs: []
+assert_used:
+  skips:
+    - "*.py"
