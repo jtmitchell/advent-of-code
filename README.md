@@ -1,4 +1,5 @@
 # Advent of Code
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://gitlab.com/jtmitchell/advent-of-code)
 
 Code to solve the [Advent of Code](https://adventofcode.com/) puzzles.
 
