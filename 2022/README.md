@@ -6,6 +6,7 @@ Code to solve the [2022 Advent of Code](https://adventofcode.com/2022) puzzles.
 
 * [Day 1: Calorie Counting](./day1/README.md)
 * [Day 2: Rock Paper Scissors](./day2/README.md)
+* [Day 3: Rucksack Reorganization](./day3/README.md)
 
 
 ## Install
