@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import os
 import argparse
-from models import Rucksack
+from models import Rucksack, PRIORITIES
+from utils import grouper
 
 
 parser = argparse.ArgumentParser()
@@ -25,8 +26,11 @@ with open(input_file, "r", encoding="utf8") as fh:
         rucksacks.append(Rucksack(items=line))
 
 print(f"There are {len(rucksacks)}")
-for num, r in enumerate(rucksacks,start=1):
-    print(f"Bag{num} {r.compartment1} :: {r.compartment2} // shared {r.shared_items} // priority {r.priority}")
+for num, r in enumerate(rucksacks, start=1):
+    print(
+        f"Bag{num} {r.compartment1} :: {r.compartment2} "
+        f"// shared {r.shared_items} // priority {r.priority}"
+    )
 
 # Puzzle 1
 # What is the sum of the priorities of the misplaced items
@@ -34,3 +38,18 @@ total_priorities = sum([r.priority for r in rucksacks])
 print(f"Sum of priorities is {total_priorities}")
 
 # Puzzle 2
+# What is the sum of the badges for the 3 elf groups
+
+# Iterate through the rucksacks in groups of 3
+total_group_priorities = 0
+for group in grouper(rucksacks, 3):
+    # find the shared items, and use set() to get the unique item
+    shared_items = [
+        i for i in group[0].items if i in group[1].items and i in group[2].items
+    ]
+    priorities = [PRIORITIES.find(i) for i in set(shared_items)]
+    total_group_priorities += sum(priorities)
+    print(f"{shared_items}")
+    print(f"Group badge priority is {sum(priorities)}")
+
+print(f"Sum of group badge priorities is {total_group_priorities}")

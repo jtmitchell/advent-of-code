@@ -4,3 +4,4 @@
 What is the sum of the priorities of the mis-packed items?
 
 ## Puzzle 2
+What is the sum of the badges for the 3 elf groups?
