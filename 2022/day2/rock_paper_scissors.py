@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
 import argparse
-from rules import GameRound, ROCK, PAPER, SCISSORS
+from models import GameRound, ROCK, PAPER, SCISSORS
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
