@@ -1,0 +1,16 @@
+schemaVersion: 2.1.0
+metadata:
+  name: python-advent-of-code
+components:
+  - name: tools
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-0e189d9
+      volumeMounts:
+        - name: venv
+          path: /home/user/.venv
+      memoryLimit: 512Mi
+      mountSources: true
+
+  - name: venv
+    volume:
+      size: 1G
