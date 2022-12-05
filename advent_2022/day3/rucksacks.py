@@ -2,7 +2,7 @@ import os
 from argparse import Namespace
 
 from .models import PRIORITIES, Rucksack
-from .utils import grouper
+from advent_2022.utils import grouper
 
 
 def solve(args: Namespace):

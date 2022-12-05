@@ -7,4 +7,4 @@ class StackOfCrates:
     Class for stacking crates.
     """
 
-    stack: list[str] = field(default_factory=list)
+    crates: list[str] = field(default_factory=list)
