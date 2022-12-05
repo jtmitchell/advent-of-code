@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import os
 import argparse
-from models import Rucksack, PRIORITIES
-from utils import grouper
+from .models import Rucksack, PRIORITIES
+from .utils import grouper
 
 
 parser = argparse.ArgumentParser()

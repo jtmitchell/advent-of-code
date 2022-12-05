@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
 import argparse
-from models import Assignment, ElfPair
+from .models import Assignment, ElfPair
 
 parser = argparse.ArgumentParser()
 parser.add_argument(

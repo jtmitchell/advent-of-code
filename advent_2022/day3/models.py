@@ -26,15 +26,15 @@ class Rucksack:
         """
         Return the contents of first compartment.
         """
-        return self.items[0:self.middle]
+        return self.items[0 : self.middle]
 
     @property
     def compartment2(self) -> str:
         """
         Return the contents of second compartment.
         """
-        return self.items[self.middle:]
-    
+        return self.items[self.middle :]
+
     @property
     def shared_items(self) -> list[str]:
         """

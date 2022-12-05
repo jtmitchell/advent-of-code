@@ -5,7 +5,7 @@ Code to solve the [Advent of Code](https://adventofcode.com/) puzzles.
 
 ## Puzzles
 
-* [2022 Puzzles](./2022/README.md)
+* [2022 Puzzles](./advent_2022/README.md)
     * using Python
 
 
