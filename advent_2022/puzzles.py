@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+import argparse
+import importlib
+
+
+def main():
+    """
+    Import and run the requested puzzle.
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("day")
+    parser.add_argument(
+        "-t", "--test", help="Run against the test data", action="store_true"
+    )
+    parser.add_argument(
+        "-2",
+        "--newrules",
+        help="Run using V2 of the rules",
+        action="store_true",
+    )
+    args = parser.parse_args()
+    puzzle = importlib.import_module(args.day)
+    puzzle.solve(args)
+
+
+if __name__ == "__main__":
+    main()
