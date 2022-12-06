@@ -9,6 +9,7 @@ Code to solve the [2022 Advent of Code](https://adventofcode.com/2022) puzzles.
 * [Day 3: Rucksack Reorganization](./day3/README.md)
 * [Day 4: Camp Cleanup](./day4/README.md)
 * [Day 5: Supply Stacks](./day5/README.md)
+* [Day 6: Tuning Trouble](./day6/README.md)
 
 
 ## Install
