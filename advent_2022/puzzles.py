@@ -10,13 +10,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("day")
     parser.add_argument(
-        "-t", "--test", help="Run against the test data", action="store_true"
+        "-t",
+        "--test",
+        help="Run against the test data",
+        action=argparse.BooleanOptionalAction,
     )
     parser.add_argument(
         "-2",
         "--newrules",
         help="Run using V2 of the rules",
-        action="store_true",
+        action=argparse.BooleanOptionalAction,
     )
     args = parser.parse_args()
     puzzle = importlib.import_module(args.day)

@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Advent puzzle",
+      "type": "python",
+      "request": "launch",
+      "program": "./puzzles.py",
+      "console": "integratedTerminal",
+      "args": [
+        "${input:testFlag}",
+        "${input:secondPuzzleRules}",
+        "day${input:puzzleDay}",
+      ],
+      "cwd": "${workspaceFolder}/advent_2022/",
+      "justMyCode": true
+    }
+  ],
+  "inputs": [
+    {
+      "id": "puzzleDay",
+      "description": "Enter number of the puzzle",
+      "default": "1",
+      "type": "promptString"
+    },
+    {
+      "id": "testFlag",
+      "description": "Use -t to run with sample data",
+      "default": "--test",
+      "options": ["--test", "--no-test"],
+      "type": "pickString"
+    },
+    {
+      "id": "secondPuzzleRules",
+      "description": "Use newrules to enable alternate rules",
+      "default": "--no-newrules",
+      "options": ["--newrules", "--no-newrules"],
+      "type": "pickString"
+    }
+  ]
+}
