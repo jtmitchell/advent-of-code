@@ -7,7 +7,7 @@ from .models import File, Directory
 
 def solve(args: Namespace):
     """
-    Solve the radio tuner puzzle.
+    Solve the disk space puzzle.
     """
     dirname = os.path.dirname(__file__)
     basefile = "sample.txt" if args.test else "input.txt"
