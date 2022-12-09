@@ -12,6 +12,7 @@ Code to solve the [2022 Advent of Code](https://adventofcode.com/2022) puzzles.
 * [Day 6: Tuning Trouble](./day6/README.md)
 * [Day 7: No Space Left On Device](./day7/README.md)
 * [Day 8: Treetop Tree House](./day8/README.md)
+* [Day 9: Rope Bridge](./day9/README.md)
 
 
 ## Install
