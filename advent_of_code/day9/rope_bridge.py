@@ -23,14 +23,27 @@ def solve(args: Namespace):
             steps = int(distance)
             movements.append((direction, steps))
 
-    head = Knot(position=Vector())
-    tail = Knot(position=Vector())
-    bridge = Rope(head=head, tail=tail, is_test=args.test)
+    if args.newrules:
+        num_knots = 10
+    else:
+        num_knots = 2
+    knots = [Knot(position=Vector()) for _ in range(num_knots)]
+    bridge = Rope(knots=knots, is_test=args.test)
 
     for direction, steps in movements:
         bridge.move(direction=direction, steps=steps)
 
     # Puzzle 1
     # How many positions does the tail of the rope visit at least once?
+    tail = knots[-1]
+    print(
+        f"Tail positions {len(tail.all_positions)} and unique {len(tail.unique_positions)}"
+    )
+    if args.test:
+        print(f"Unique tail positions\n{tail.unique_positions}")
+        assert (
+            len(tail.unique_positions) == 13
+        ), f"{len(tail.unique_positions)} is not 13: wrong number of unique positions"
 
     # Puzzle 2
+    # With 10 knots, how many positions does the tail of the rope visit at least once?

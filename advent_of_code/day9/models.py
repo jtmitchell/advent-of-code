@@ -48,6 +48,21 @@ class Knot:
     position: Vector
     trail: list[Vector] = field(default_factory=list)
 
+    @property
+    def all_positions(self) -> list[Vector]:
+        """
+        Get the list of all positions.
+        """
+        return self.trail + [self.position]
+
+    @property
+    def unique_positions(self) -> list[Vector]:
+        """
+        Get a list of unique positions.
+        """
+        unique_pos = {(x.x, x.y) for x in self.all_positions}
+        return [Vector(x=x[0], y=x[1]) for x in unique_pos]
+
     def move(self, translation: Vector) -> None:
         """
         Move the know and return new position.
@@ -80,8 +95,7 @@ class Rope:
     Class for the rope bridge.
     """
 
-    head: Knot
-    tail: Knot
+    knots: list[Knot] = field(default_factory=list)
     is_test: bool = False
 
     def move(self, direction: str, steps: int) -> None:
@@ -91,14 +105,17 @@ class Rope:
         translation = TRANSLATE.get(direction)
         assert translation is not None
         for _ in range(steps):
-            self.head.move(translation)
-            self.tail.follow(self.head.position)
-            if self.is_test:
-                print(
-                    f"Move={direction}:{steps} "
-                    f"Head={self.head.position} "
-                    f"Tail={self.tail.position}"
-                )
+            for i in range(len(self.knots) - 1):
+                head = self.knots[i]
+                tail = self.knots[i + 1]
+                head.move(translation)
+                tail.follow(head.position)
+                if self.is_test:
+                    print(
+                        f"Move={direction}:{steps} "
+                        f"Head={head.position} "
+                        f"Tail={tail.position}"
+                    )
 
 
 TRANSLATE = {
