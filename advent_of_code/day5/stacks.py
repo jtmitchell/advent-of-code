@@ -4,7 +4,7 @@ import re
 from argparse import Namespace
 
 from .models import StackOfCrates
-from advent_2022.utils import grouper
+from advent_of_code.utils import grouper
 
 
 def solve(args: Namespace):

@@ -12,7 +12,7 @@
         "${input:secondPuzzleRules}",
         "day${input:puzzleDay}",
       ],
-      "cwd": "${workspaceFolder}/advent_2022/",
+      "cwd": "${workspaceFolder}/advent_of_code/",
       "justMyCode": true
     }
   ],
@@ -20,7 +20,7 @@
     {
       "id": "puzzleDay",
       "description": "Enter number of the puzzle",
-      "default": "8",
+      "default": "9",
       "type": "promptString"
     },
     {
