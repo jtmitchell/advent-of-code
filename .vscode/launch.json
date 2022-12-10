@@ -12,7 +12,7 @@
         "${input:secondPuzzleRules}",
         "day${input:puzzleDay}",
       ],
-      "cwd": "${workspaceFolder}/advent_of_code/",
+      "cwd": "${workspaceFolder}/",
       "justMyCode": true
     }
   ],

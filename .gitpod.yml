@@ -7,7 +7,7 @@ tasks:
   - name: Dependencies
     init: |
       pip install --upgrade pip
-      pip install -r advent_of_code/requirements.txt
+      pip install -r requirements.txt
   - name: Pre-commit
     init: pip install pre-commit
     command: pre-commit install --hook-type pre-commit

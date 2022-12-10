@@ -22,7 +22,7 @@ def main():
         action=argparse.BooleanOptionalAction,
     )
     args = parser.parse_args()
-    puzzle = importlib.import_module(args.day)
+    puzzle = importlib.import_module(f"advent_of_code.{args.day}")
     puzzle.solve(args)
 
 

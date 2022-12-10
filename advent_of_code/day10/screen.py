@@ -1,7 +1,7 @@
 import os
 from argparse import Namespace
 
-from advent_of_code.utils import grouper  # type: ignore
+from advent_of_code.utils import grouper
 
 from .models import CPU, RegisterValue
 

@@ -3,12 +3,23 @@
 
 Code to solve the [Advent of Code](https://adventofcode.com/) puzzles.
 
+The current year's puzzles are in the main branch, and any previous years are in branches.
+
 ## Puzzles
 
 * [Advent of Code 2022](./advent_of_code/README.md)
 
 
 ## Install
+
+### Python
+
+Create a virtual environment, and install the Python dependancies.
+* setup a Python virtual enviroment
+* install the development dependancies
+```
+pip install -r requirements.txt
+```
 
 ### Pre-Commit
 
