@@ -98,6 +98,20 @@ class Rope:
     knots: list[Knot] = field(default_factory=list)
     is_test: bool = False
 
+    @property
+    def head(self) -> Knot:
+        """
+        Return the head of the rope.
+        """
+        return self.knots[0]
+
+    @property
+    def tail(self) -> Knot:
+        """
+        Return the tail of the rope.
+        """
+        return self.knots[-1]
+
     def move(self, direction: str, steps: int) -> None:
         """
         Move the head, and have the tail follow, for each step.
@@ -105,16 +119,19 @@ class Rope:
         translation = TRANSLATE.get(direction)
         assert translation is not None
         for _ in range(steps):
-            for i in range(len(self.knots) - 1):
-                head = self.knots[i]
-                tail = self.knots[i + 1]
-                head.move(translation)
+            # Move the head of the rope
+            self.head.move(translation)
+
+            for i in range(1, len(self.knots)):
+                # Make each subsequent knot follow the previous one
+                head = self.knots[i - 1]
+                tail = self.knots[i]
                 tail.follow(head.position)
                 if self.is_test:
                     print(
                         f"Move={direction}:{steps} "
-                        f"Head={head.position} "
-                        f"Tail={tail.position}"
+                        f"knot[{i-1}]={head.position} "
+                        f"knot[{i}]={tail.position}"
                     )
 
 

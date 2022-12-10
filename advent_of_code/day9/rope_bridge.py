@@ -8,7 +8,10 @@ def solve(args: Namespace):
     Solve the rope bridge puzzle.
     """
     dirname = os.path.dirname(__file__)
-    basefile = "sample.txt" if args.test else "input.txt"
+    if args.test:
+        basefile = "sample2.txt" if args.newrules else "sample.txt"
+    else:
+        basefile = "input.txt"
     input_file = os.path.join(dirname, basefile)
 
     print("Rope bridge")
@@ -27,23 +30,30 @@ def solve(args: Namespace):
         num_knots = 10
     else:
         num_knots = 2
-    knots = [Knot(position=Vector()) for _ in range(num_knots)]
-    bridge = Rope(knots=knots, is_test=args.test)
+
+    bridge = Rope(
+        knots=[Knot(position=Vector()) for _ in range(num_knots)], is_test=args.test
+    )
 
     for direction, steps in movements:
         bridge.move(direction=direction, steps=steps)
 
     # Puzzle 1
     # How many positions does the tail of the rope visit at least once?
-    tail = knots[-1]
+    tail = bridge.tail
     print(
         f"Tail positions {len(tail.all_positions)} and unique {len(tail.unique_positions)}"
     )
     if args.test:
         print(f"Unique tail positions\n{tail.unique_positions}")
-        assert (
-            len(tail.unique_positions) == 13
-        ), f"{len(tail.unique_positions)} is not 13: wrong number of unique positions"
+        if args.newrules:
+            expected_value = 36
+        else:
+            expected_value = 13
+        assert len(tail.unique_positions) == expected_value, (
+            f"{len(tail.unique_positions)} is not {expected_value}: "
+            f"wrong number of unique positions"
+        )
 
     # Puzzle 2
     # With 10 knots, how many positions does the tail of the rope visit at least once?
