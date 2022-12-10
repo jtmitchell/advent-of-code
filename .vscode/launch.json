@@ -20,7 +20,7 @@
     {
       "id": "puzzleDay",
       "description": "Enter number of the puzzle",
-      "default": "9",
+      "default": "10",
       "type": "promptString"
     },
     {
