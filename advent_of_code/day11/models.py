@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Iterator, Optional
+import math
 
 # pylint: disable=too-many-instance-attributes
 
@@ -19,7 +20,7 @@ class Monkey:
     total_inspections: int = 0
     relief: Optional[int] = None
 
-    def inspect_items(self) -> Iterator[tuple[int, int]]:
+    def inspect_items(self, least_common_multiple: float) -> Iterator[tuple[int, int]]:
         """
         Inspect the item.
         """
@@ -43,6 +44,8 @@ class Monkey:
 
             if self.relief:
                 worry = int(worry / self.relief)
+            else:
+                worry = int(worry % least_common_multiple)
 
             # Perform worry test
             if worry % self.test_divisible == 0:
@@ -59,12 +62,20 @@ class Troop:
 
     monkeys: list[Monkey] = field(default_factory=list)
 
-    def monkey_business(self):
+    @property
+    def least_common_multiple(self) -> float:
+        """
+        Return the least common multiple of all the divisors.
+        """
+        divisors = [m.test_divisible for m in self.monkeys]
+        return math.prod(divisors)
+
+    def monkey_business(self, least_common_multiple: float):
         """
         Perform a round of inspections.
         """
         for m in self.monkeys:
-            for item, target in m.inspect_items():
+            for item, target in m.inspect_items(least_common_multiple):
                 self.monkeys[target].items.append(item)
 
     def show_hands(self) -> None:

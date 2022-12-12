@@ -69,8 +69,9 @@ def solve(args: Namespace):
     else:
         rounds = 20
 
+    lcm = troop.least_common_multiple
     for i in range(rounds):
-        troop.monkey_business()
+        troop.monkey_business(least_common_multiple=lcm)
         if args.test:
             if not args.newrules or i in [1, 20, 1000, 10000]:
                 print(f"Round {i}")
