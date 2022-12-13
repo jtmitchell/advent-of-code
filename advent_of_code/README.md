@@ -15,3 +15,4 @@ Code to solve the [2022 Advent of Code](https://adventofcode.com/2022) puzzles.
 * [Day 9: Rope Bridge](./day9/README.md)
 * [Day 10: Cathode-Ray Tube](./day10/README.md)
 * [Day 11: Monkey in the Middle](./day11/README.md)
+* [Day 12: Hill Climbing Algorithm](./day12/README.md)
