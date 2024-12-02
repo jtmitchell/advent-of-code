@@ -33,4 +33,4 @@ pytest:
   stage: test
   script:
     - uv run pytest
-    - uv run pre-commit --all-files
+    - uv run pre-commit run --all-files
