@@ -1,0 +1,25 @@
+[project]
+name = "aoc"
+dynamic = ["version"]
+description = "Advent of Code solutions"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ruff",
+    "ruff-lsp",
+    "pyupgrade",
+    "pre-commit",
+    "cookiecutter",
+    "pytest",
+]
+
+[tool.hatch.version]
+path = "advent_of_code/version.py"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false
+dev-dependencies = []
