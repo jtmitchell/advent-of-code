@@ -31,6 +31,7 @@ def load_data(datafile: str) -> list[list[int]]:
             data.append(line.split())
     return data
 
+
 def solve_pt1(data: list[list[int]]):
     """
     Solve the part one puzzle.
@@ -39,7 +40,7 @@ def solve_pt1(data: list[list[int]]):
         pass
 
 
-def solve_pt2(data:list[list[int]]):
+def solve_pt2(data: list[list[int]]):
     """
     Solve the part two puzzle.
     """
