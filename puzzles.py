@@ -23,7 +23,7 @@ def main():
     )
     args = parser.parse_args()
     puzzle = importlib.import_module(f"advent_of_code.{args.day}")
-    puzzle.solve(args)
+    puzzle.run_puzzle(args)
 
 
 if __name__ == "__main__":

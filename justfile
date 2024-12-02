@@ -16,3 +16,7 @@ install:
 # Create a new day
 new_day:
     uv run cookiecutter templates/ --output-dir advent_of_code/
+
+# Run a puzzle
+puzzle +options="":
+    uv run ./puzzles.py {{options}}

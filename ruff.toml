@@ -65,6 +65,8 @@ allow-dict-calls-with-keyword-arguments = true
 [lint]
 select = ["ALL"]
 ignore = [
+    "S101", # Allow assert in the tests
+
     # Ignore modules
     "PTH", # flake8-use-pathlib
     "ERA", # commented out code
