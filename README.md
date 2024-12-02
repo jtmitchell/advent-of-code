@@ -2,7 +2,9 @@
 
 Code to solve the [Advent of Code](https://adventofcode.com/) puzzles.
 
-The current year's puzzles are in the main branch, and any previous years are in branches.
+The current year's puzzles are in the main branch.
+
+Puzzles for previous years can be found in the [tags](https://gitlab.com/jtmitchell/advent-of-code/-/tags).
 
 ## Puzzles
 
