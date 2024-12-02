@@ -23,7 +23,7 @@ def test_puzzle_pt2():
     """
     Run a test against the sample input.
     """
-    expected_result = {{cookiecutter.expected_test_result}}
+    expected_result = None
     input_file = pathlib.Path(__file__).with_name("sample.txt")
 
     data = load_data(input_file)
