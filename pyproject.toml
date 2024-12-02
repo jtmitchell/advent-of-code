@@ -23,3 +23,9 @@ build-backend = "hatchling.build"
 [tool.uv]
 package = false
 dev-dependencies = []
+
+[tool.pyright]
+typeCheckingMode = "off"
+
+[tool.pytest.ini_options]
+addopts = "--ignore=templates/"
