@@ -10,7 +10,7 @@ cache:
 
 before_script:
   - pip install --root-user-action=ignore uv==$UV_INSTALL_VERSION
-  - uv python install
+  # - uv python install
   - uv sync --locked
 
 stages:
