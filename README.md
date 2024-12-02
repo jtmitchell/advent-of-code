@@ -1,5 +1,4 @@
 # Advent of Code
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://gitlab.com/jtmitchell/advent-of-code)
 
 Code to solve the [Advent of Code](https://adventofcode.com/) puzzles.
 
@@ -7,35 +6,35 @@ The current year's puzzles are in the main branch, and any previous years are in
 
 ## Puzzles
 
-* [Advent of Code 2022](./advent_of_code/README.md)
+* [Advent of Code 2024](./advent_of_code/README.md)
 
+### Cookiecutter
+
+There is a [cookiecutter](https://github.com/cookiecutter/cookiecutter) template to create the bare code for a new day's puzzle.
+
+To start a new puzzle, run ``just new_day``, and fill in the prompts.
 
 ## Install
 
+Use the [``justfile``](https://github.com/casey/just) command to install everything, using [``uv``](https://github.com/astral-sh/uv).
+```
+just install
+```
+
 ### Python
 
-Create a virtual environment, and install the Python dependancies.
-* setup a Python virtual enviroment
-* install the development dependancies
-```
-pip install -r requirements.txt
-```
+* Install [``uv``](https://github.com/astral-sh/uv) as the package manager.
+* Run ``uv sync`` to install the dependancies.
+
 
 ### Pre-Commit
 
-The project is using ``pre-commit`` to do some checking when commiting.
+The project is using [``pre-commit``](https://pre-commit.com/) to do some checking when commiting.
 
-* install the [pre-commit hooks for git](https://pre-commit.com/)
+If you did not use the ``just install`` command, then manually install the commit hooks with
 ```
-pre-commit install --hook-type pre-commit
+uv run pre-commit install --hook-type pre-commit
 ```
-
-The pre-commit hooks are configured to do the following:
-* format the code using [**black**](https://github.com/psf/black)
-* run flake8 to check the code
-* fix trailing whitespace
-* validate yaml files
-* check we are not adding huge files to the repo
 
 The ``pre-commit`` checks will run when you commit code,
 and may stop you committing the code until the checks are passing.

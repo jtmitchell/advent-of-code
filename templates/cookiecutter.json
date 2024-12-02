@@ -2,5 +2,6 @@
   "aoc_year": "2024",
   "day_number": "1",
   "puzzle_name": "",
+  "expected_test_result": "None",
   "module_name": "day_{{ cookiecutter.day_number.zfill(2) }}"
 }

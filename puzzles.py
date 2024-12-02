@@ -10,15 +10,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("day")
     parser.add_argument(
-        "-t",
-        "--test",
-        help="Run against the test data",
-        action=argparse.BooleanOptionalAction,
-    )
-    parser.add_argument(
         "-2",
-        "--newrules",
-        help="Run using V2 of the rules",
+        "--part2",
+        help="Run the part two puzzle",
         action=argparse.BooleanOptionalAction,
     )
     args = parser.parse_args()

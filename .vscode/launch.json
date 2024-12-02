@@ -3,12 +3,11 @@
   "configurations": [
     {
       "name": "Python: Advent puzzle",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "./puzzles.py",
       "console": "integratedTerminal",
       "args": [
-        "${input:testFlag}",
         "${input:secondPuzzleRules}",
         "day${input:puzzleDay}",
       ],
@@ -20,21 +19,14 @@
     {
       "id": "puzzleDay",
       "description": "Enter number of the puzzle",
-      "default": "10",
+      "default": "day_01",
       "type": "promptString"
     },
     {
-      "id": "testFlag",
-      "description": "Use -t to run with sample data",
-      "default": "--test",
-      "options": ["--test", "--no-test"],
-      "type": "pickString"
-    },
-    {
       "id": "secondPuzzleRules",
-      "description": "Use newrules to enable alternate rules",
-      "default": "--no-newrules",
-      "options": ["--newrules", "--no-newrules"],
+      "description": "Run part two of the puzzle",
+      "default": "--no-part2",
+      "options": ["--part2", "--no-part2"],
       "type": "pickString"
     }
   ]

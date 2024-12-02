@@ -4,4 +4,5 @@
 Sort two lists and print the sum of the difference of each line.
 
 ## Puzzle 2
-TODO
+Return the sum of
+* each element in the first list, multiplied by the number of times it appears in the second list
