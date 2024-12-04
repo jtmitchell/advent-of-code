@@ -1,5 +1,5 @@
 from collections.abc import Iterable, Iterator
-from itertools import zip_longest
+from itertools import islice, zip_longest
 from typing import TypeVar
 
 _T = TypeVar("_T")
@@ -23,3 +23,18 @@ def grouper(
         return zip(*args, strict=False)
 
     raise ValueError("Expected fill, strict, or ignore")
+
+
+def pairwise(iterable: Iterable[_T], n: int) -> Iterator[tuple[_T, ...]]:
+    """
+    Return a sliding window with n elements, of the iterable.
+
+    s -> (s0,s1,..s(n-1)), (s1,s2,.., sn), (s2, s3,..,s(n+1)), ...
+    """
+    iters = iter(iterable)
+    result = tuple(islice(iters, n))
+    if len(result) == n:
+        yield result
+    for elem in iters:
+        result = result[1:] + (elem,)
+        yield result

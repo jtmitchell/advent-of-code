@@ -21,6 +21,6 @@ new_day:
 test day="":
     uv run pytest advent_of_code/{{day}}
 
-# Run a puzzle
-puzzle +options="":
+# Solve a puzzle
+solve +options="":
     uv run ./puzzles.py {{options}}

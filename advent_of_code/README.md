@@ -4,4 +4,5 @@ Code to solve the [2024 Advent of Code](https://adventofcode.com/2024) puzzles.
 
 ## Puzzles
 
-* [Day 1: Calorie Counting](./day1/README.md)
+* [Day 1: Historian Hysteria](./day_01/README.md)
+* [Day 2: Red-Nosed Reports](./day_02/README.md)

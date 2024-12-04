@@ -9,4 +9,4 @@ For each line in the input data, the report is safe if:
 
 
 ## Puzzle 2
-TODO
+Check each line of data as before, but allow a single unsafe pair.
