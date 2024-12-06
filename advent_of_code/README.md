@@ -7,3 +7,4 @@ Code to solve the [2024 Advent of Code](https://adventofcode.com/2024) puzzles.
 * [Day 1: Historian Hysteria](./day_01/README.md)
 * [Day 2: Red-Nosed Reports](./day_02/README.md)
 * [Day 3: Mull It Over](./day_03/README.md)
+* [Day 4: Ceres Search](./day_04/README.md)
