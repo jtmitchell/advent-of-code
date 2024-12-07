@@ -89,4 +89,25 @@ def solve_pt2(data: dict[str, list[Vector]]):
     """
     Solve the part two puzzle.
     """
-    return None
+    # This holds a list of directions for each cross point "A"
+    solutions = {}
+
+    # Loop through the letters in MAS.
+    # Find each possible variation where the letters are next to each other diagonally.
+    # Only keep those that move in the same direction.
+    # Determine how many solutions cross on the "A"
+    for loc_m in data["m"]:
+        for loc_a in [i for i in data["a"] if adjacent(i, loc_m)]:
+            direction = loc_m - loc_a
+            if any([direction.x == 0, direction.y == 0]):
+                # Ignore any words that are not on a diagonal
+                continue
+            for loc_s in [i for i in data["s"] if adjacent(i, loc_a)]:
+                if loc_a - loc_s != direction:
+                    continue
+                direction_list = solutions.get(loc_a, [])
+                direction_list.append(direction)
+                solutions[loc_a] = direction_list
+
+    # Count the number of cross points with two directions
+    return len([k for k, v in solutions.items() if len(v) == 2])

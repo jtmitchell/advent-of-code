@@ -6,7 +6,7 @@ from dataclasses import astuple, dataclass, fields
 from typing import Self
 
 
-@dataclass
+@dataclass(unsafe_hash=True)
 class Vector:
     """
     Class for the X/Y position.

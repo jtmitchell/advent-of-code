@@ -6,4 +6,6 @@
 * build lists of all the combinations where the vector from each letter is 1 and the direction is consistent
 
 ## Puzzle 2
-TODO
+* Only search for the word "MAS"
+* But the word must be on a diagonal
+* And the word must intersect another "MAS" to make a X
