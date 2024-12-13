@@ -5,6 +5,13 @@ Day 5: Print Queue
 
 import pathlib
 from argparse import Namespace
+from dataclasses import dataclass, field
+
+
+@dataclass
+class PageLookup:
+    after: list[int] = field(default_factory=list)
+    before: list[int] = field(default_factory=list)
 
 
 def run_puzzle(args: Namespace):
@@ -20,7 +27,7 @@ def run_puzzle(args: Namespace):
     print(f"Result is {result}")
 
 
-def load_data(datafile: str) -> tuple[tuple[int, int], list[list[int]]]:
+def load_data(datafile: str) -> tuple[list[tuple[int, int]], list[list[int]]]:
     """
     Load the puzzle data.
     """
@@ -39,7 +46,7 @@ def load_data(datafile: str) -> tuple[tuple[int, int], list[list[int]]]:
     return page_ordering, pages_list
 
 
-def check_ordering(page_ordering: tuple[int, int], pages: list[int]) -> bool:
+def check_ordering(page_ordering: list[tuple[int, int]], pages: list[int]) -> bool:
     """
     Check the page ordering.
     """
@@ -51,14 +58,71 @@ def check_ordering(page_ordering: tuple[int, int], pages: list[int]) -> bool:
     return True
 
 
-def fix_order(page_ordering: tuple[int, int], pages: list[int]) -> list[int]:
+def fix_order(page_ordering: list[tuple[int, int]], pages: list[int]) -> list[int]:  # noqa: C901
     """
     Fix the ordering of the incorrect pages.
     """
-    return pages
+    filtered_order = [(x, y) for x, y in page_ordering if x in pages and y in pages]
+    lookup = {}
+    for first_page, second_page in filtered_order:
+        p1 = lookup.get(first_page, PageLookup())
+        p1.before.append(second_page)
+        lookup[first_page] = p1
+
+        p2 = lookup.get(second_page, PageLookup())
+        p2.after.append(first_page)
+        lookup[second_page] = p2
+
+    fixed_pages = []
+    for first_page, second_page in filtered_order:
+        if first_page not in fixed_pages:
+            fixed_pages.insert(0, first_page)
+        else:
+            fixed_pages.pop(fixed_pages.index(first_page))
+            idx_before = [
+                fixed_pages.index(x) for x in lookup[first_page].before if x in fixed_pages
+            ]
+            idx_after = [
+                fixed_pages.index(x) for x in lookup[first_page].after if x in fixed_pages
+            ]
+            idx_before = min(idx_before) if idx_before else None
+            idx_after = max(idx_after) if idx_after else None
+            if idx_before is not None and idx_after is not None:
+                if idx_before > idx_after:
+                    fixed_pages.insert(idx_before, first_page)
+                else:
+                    fixed_pages.insert(idx_after, first_page)
+            elif idx_before is not None:
+                fixed_pages.insert(idx_before, first_page)
+            elif idx_after is not None:
+                fixed_pages.insert(idx_after, first_page)
+
+        if second_page not in fixed_pages:
+            fixed_pages.append(second_page)
+        else:
+            fixed_pages.pop(fixed_pages.index(second_page))
+            idx_before = [
+                fixed_pages.index(x) for x in lookup[second_page].before if x in fixed_pages
+            ]
+            idx_after = [
+                fixed_pages.index(x) for x in lookup[second_page].after if x in fixed_pages
+            ]
+            idx_before = min(idx_before) if idx_before else None
+            idx_after = max(idx_after) if idx_after else None
+            if idx_before is not None and idx_after is not None:
+                if idx_before > idx_after:
+                    fixed_pages.insert(idx_before, second_page)
+                else:
+                    fixed_pages.insert(idx_after, second_page)
+            elif idx_before is not None:
+                fixed_pages.insert(idx_before, second_page)
+            elif idx_after is not None:
+                fixed_pages.insert(idx_after, second_page)
+
+    return fixed_pages
 
 
-def solve_pt1(data: tuple[tuple[int, int], list[int]]):
+def solve_pt1(data: tuple[list[tuple[int, int]], list[list[int]]]):
     """
     Solve the part one puzzle.
     """
@@ -73,7 +137,7 @@ def solve_pt1(data: tuple[tuple[int, int], list[int]]):
     return sum(mid_pages)
 
 
-def solve_pt2(data: tuple[tuple[int, int], list[int]]):
+def solve_pt2(data: tuple[list[tuple[int, int]], list[list[int]]]):
     """
     Solve the part two puzzle.
     """
