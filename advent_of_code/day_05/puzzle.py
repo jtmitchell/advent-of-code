@@ -58,7 +58,30 @@ def check_ordering(page_ordering: list[tuple[int, int]], pages: list[int]) -> bo
     return True
 
 
-def fix_order(page_ordering: list[tuple[int, int]], pages: list[int]) -> list[int]:  # noqa: C901
+def insert_page(
+    fixed_pages: list[int], page_num: int, lookup: dict[int, PageLookup]
+) -> list[int]:
+    fixed_pages.pop(fixed_pages.index(page_num))
+    idx_before = [fixed_pages.index(x) for x in lookup[page_num].before if x in fixed_pages]
+    idx_after = [fixed_pages.index(x) for x in lookup[page_num].after if x in fixed_pages]
+    idx_before = min(idx_before) if idx_before else None
+    idx_after = max(idx_after) if idx_after else None
+    if idx_before is not None and idx_after is not None:
+        if idx_before > idx_after:
+            fixed_pages.insert(idx_before, page_num)
+        else:
+            fixed_pages.insert(idx_after, page_num)
+    elif idx_before is not None:
+        fixed_pages.insert(idx_before, page_num)
+    elif idx_after is not None:
+        fixed_pages.insert(idx_after, page_num)
+    else:
+        fixed_pages.insert(0, page_num)
+
+    return fixed_pages
+
+
+def fix_order(page_ordering: list[tuple[int, int]], pages: list[int]) -> list[int]:
     """
     Fix the ordering of the incorrect pages.
     """
@@ -78,46 +101,15 @@ def fix_order(page_ordering: list[tuple[int, int]], pages: list[int]) -> list[in
         if first_page not in fixed_pages:
             fixed_pages.insert(0, first_page)
         else:
-            fixed_pages.pop(fixed_pages.index(first_page))
-            idx_before = [
-                fixed_pages.index(x) for x in lookup[first_page].before if x in fixed_pages
-            ]
-            idx_after = [
-                fixed_pages.index(x) for x in lookup[first_page].after if x in fixed_pages
-            ]
-            idx_before = min(idx_before) if idx_before else None
-            idx_after = max(idx_after) if idx_after else None
-            if idx_before is not None and idx_after is not None:
-                if idx_before > idx_after:
-                    fixed_pages.insert(idx_before, first_page)
-                else:
-                    fixed_pages.insert(idx_after, first_page)
-            elif idx_before is not None:
-                fixed_pages.insert(idx_before, first_page)
-            elif idx_after is not None:
-                fixed_pages.insert(idx_after, first_page)
-
+            fixed_pages = insert_page(
+                fixed_pages=fixed_pages, page_num=first_page, lookup=lookup
+            )
         if second_page not in fixed_pages:
             fixed_pages.append(second_page)
         else:
-            fixed_pages.pop(fixed_pages.index(second_page))
-            idx_before = [
-                fixed_pages.index(x) for x in lookup[second_page].before if x in fixed_pages
-            ]
-            idx_after = [
-                fixed_pages.index(x) for x in lookup[second_page].after if x in fixed_pages
-            ]
-            idx_before = min(idx_before) if idx_before else None
-            idx_after = max(idx_after) if idx_after else None
-            if idx_before is not None and idx_after is not None:
-                if idx_before > idx_after:
-                    fixed_pages.insert(idx_before, second_page)
-                else:
-                    fixed_pages.insert(idx_after, second_page)
-            elif idx_before is not None:
-                fixed_pages.insert(idx_before, second_page)
-            elif idx_after is not None:
-                fixed_pages.insert(idx_after, second_page)
+            fixed_pages = insert_page(
+                fixed_pages=fixed_pages, page_num=second_page, lookup=lookup
+            )
 
     return fixed_pages
 
