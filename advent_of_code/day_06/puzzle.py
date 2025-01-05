@@ -20,24 +20,49 @@ class Room:
 
     @property
     def is_guard_in_room(self):
+        return self.in_room(location=self.guard_location)
+
+    def in_room(self, location: Vector) -> bool:
+        """
+        Return True if the location is inside the room.
+        """
         return all(
             [
-                0 <= self.guard_location.x < self.width,
-                0 <= self.guard_location.y < self.height,
+                0 <= location.x < self.width,
+                0 <= location.y < self.height,
             ]
         )
 
-    def move(self, distance: int = 1) -> list[Vector]:
-        steps = []
-        new_location = self.guard_location + (distance * self.guard_direction)
+    @classmethod
+    def rotate(cls, direction: Vector) -> Vector:
+        """
+        Rotate the direction 90 degrees.
+        """
+        return Vector(x=-direction.y, y=direction.x)
+
+    @classmethod
+    def move(cls, location: Vector, direction: Vector, distance: int = 1) -> Vector:
+        """
+        Return the new location after moving in the direction.
+        """
+        return location + (distance * direction)
+
+    def move_guard(self, distance: int = 1) -> tuple[Vector, Vector]:
+        """
+        Move the guard and return the new location and direction.
+        """
+
+        new_location = self.move(
+            location=self.guard_location, distance=distance, direction=self.guard_direction
+        )
+
         if new_location in self.obstructions:
             # Rotate 90 degrees
-            self.guard_direction = Vector(x=-self.guard_direction.y, y=self.guard_direction.x)
+            self.guard_direction = self.rotate(self.guard_direction)
         else:
             self.guard_location = new_location
-            steps.append(new_location)
 
-        return steps
+        return self.guard_location, self.guard_direction
 
 
 def run_puzzle(args: Namespace):
@@ -93,7 +118,7 @@ def solve_pt1(data: Room):
     """
     visited = []
     while data.is_guard_in_room:
-        visited.extend(data.move(distance=1))
+        visited.append(data.move_guard(distance=1)[0])
 
     distinct_locations = set(visited)
     return len(distinct_locations)
@@ -103,4 +128,24 @@ def solve_pt2(data: Room):
     """
     Solve the part two puzzle.
     """
-    return None
+    visited = []
+    while data.is_guard_in_room:
+        visited.append(data.move_guard(distance=1))
+
+    # Loop through each location.
+    # Find where a 90 degree turn for the 2nd point gives the same direction as the 1st point.
+    locations = {}
+    block_location_list = []
+    for location, direction in visited:
+        if location in locations and Room.rotate(direction) in locations[location]:
+            block_location = Room.move(location=location, direction=direction, distance=1)
+            # Verify the BLOCK location is inside the map.
+            if data.in_room(location=block_location):
+                block_location_list.append(block_location)
+        # Make a dict with location as the key
+        if location in locations:
+            locations[location].append(direction)
+        else:
+            locations[location] = [direction]
+
+    return len(list(set(block_location_list)))
