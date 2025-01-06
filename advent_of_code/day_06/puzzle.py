@@ -128,7 +128,7 @@ def solve_pt2(data: Room):
     """
     Solve the part two puzzle.
     """
-    visited = []
+    visited = [(data.guard_location, data.guard_direction)]
     while data.is_guard_in_room:
         visited.append(data.move_guard(distance=1))
 
@@ -147,5 +147,8 @@ def solve_pt2(data: Room):
             locations[location].append(direction)
         else:
             locations[location] = [direction]
+
+    # TODO find locations where a rotation will send the guard back to a previous path
+    # but which is not an intersection, and there are no obstructions getting back to the path.
 
     return len(list(set(block_location_list)))
