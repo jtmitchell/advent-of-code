@@ -1,0 +1,47 @@
+{
+  "name": "Advent of Code",
+  "remoteUser": "vscode",
+  // "workspaceFolder": "/home/vscode/workspace",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {
+      "UV_VERSION": "latest",
+      "BASE_IMAGE": "ubuntu"
+    }
+  },
+  "postCreateCommand": "uv sync --frozen",
+  "postStartCommand": "uv run pre-commit install",
+  "containerEnv": {
+    "DISPLAY": "dummy",
+    "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "charliermarsh.ruff",
+        "donjayamanne.githistory",
+        "editorconfig.editorconfig",
+        "iulian-radu-at.save-restore-editors",
+        "mk12.better-git-line-blame",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "redhat.vscode-yaml",
+        "skellock.just",
+        "tamasfe.even-better-toml",
+        "typefox.open-collaboration-tools",
+        "yzhang.markdown-all-in-one"
+      ],
+      "settings": {
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestEnabled": true,
+        "files.watcherExclude": {
+          ".venv/**": true,
+          "**/__pycache__/**": true,
+          "**/.mypy_cache/**": true,
+          "**/.pytest_cache/**": true
+        }
+      }
+    }
+  }
+}
