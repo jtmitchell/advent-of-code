@@ -1,6 +1,5 @@
 image: python:3.12
 variables:
-  UV_INSTALL_VERSION: "0.5.5"
   UV_CACHE_DIR: "$CI_PROJECT_DIR/.cache/uv/"
 
 cache:

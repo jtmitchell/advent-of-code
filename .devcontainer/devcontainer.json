@@ -26,11 +26,13 @@
         "mk12.better-git-line-blame",
         "ms-python.python",
         "ms-python.vscode-pylance",
+        "ms-python.debugpy",
         "redhat.vscode-yaml",
         "skellock.just",
         "tamasfe.even-better-toml",
         "typefox.open-collaboration-tools",
-        "yzhang.markdown-all-in-one"
+        "yzhang.markdown-all-in-one",
+        "detachhead.basedpyright"
       ],
       "settings": {
         "python.testing.unittestEnabled": false,
