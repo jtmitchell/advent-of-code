@@ -1,6 +1,6 @@
 [project]
 name = "aoc"
-dynamic = ["version"]
+version = "2024"
 description = "Advent of Code solutions"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -13,16 +13,8 @@ dependencies = [
     "pytest",
 ]
 
-[tool.hatch.version]
-path = "advent_of_code/version.py"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [tool.uv]
 package = false
-dev-dependencies = []
 
 [tool.pyright]
 typeCheckingMode = "off"
