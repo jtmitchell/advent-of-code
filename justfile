@@ -16,9 +16,8 @@ install:
 # Create a new year
 new_year:
     git tag $(uv version --short)
-    uv version $(date +'%Y') --commit
-    git push
-    git push origin tag $(uv version --short)
+    uv version $(date +'%Y')
+    git add . && git commit -m "Start new year $(date +'%Y')" && git push && git push origin tag $(uv version --short)
 
 # Create a new day
 new_day:
