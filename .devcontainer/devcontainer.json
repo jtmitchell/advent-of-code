@@ -10,11 +10,17 @@
       "BASE_IMAGE": "ubuntu"
     }
   },
+  "mounts":[
+    "type=bind,source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,readonly"
+  ],
   "postCreateCommand": "uv sync --frozen",
   "postStartCommand": "uv run pre-commit install",
   "containerEnv": {
     "DISPLAY": "dummy",
     "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
+  },
+  "remoteEnv": {
+    "PATH": "/home/vscode/.venv/bin:${containerEnv:PATH}"
   },
   "customizations": {
     "vscode": {

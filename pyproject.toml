@@ -9,6 +9,7 @@ dependencies = [
     "ruff-lsp",
     "pyupgrade",
     "pre-commit",
+    "pre-commit-uv",
     "cookiecutter",
     "pytest",
 ]
@@ -21,10 +22,3 @@ typeCheckingMode = "off"
 
 [tool.pytest.ini_options]
 addopts = "--ignore=templates/"
-
-[tool.bandit]
-# Configuration for bandit security checking tool
-exclude_dirs = [
-    "templates/",
-    "**/test*.py"
-]

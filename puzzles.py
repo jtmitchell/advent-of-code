@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 import argparse
 import importlib
+from argparse import ArgumentParser, Namespace
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from types import ModuleType
 
 
-def main():
+def main() -> None:
     """
     Import and run the requested puzzle.
     """
-    parser = argparse.ArgumentParser()
+    parser: ArgumentParser = argparse.ArgumentParser()
     parser.add_argument("day")
     parser.add_argument(
         "-2",
@@ -15,8 +20,8 @@ def main():
         help="Run the part two puzzle",
         action=argparse.BooleanOptionalAction,
     )
-    args = parser.parse_args()
-    puzzle = importlib.import_module(f"advent_of_code.{args.day}")
+    args: Namespace = parser.parse_args()
+    puzzle: ModuleType = importlib.import_module(name=f"advent_of_code.{args.day}")
     puzzle.run_puzzle(args)
 
 
