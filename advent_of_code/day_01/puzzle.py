@@ -47,11 +47,8 @@ def solve_pt1(data) -> int:
     dial_max: int = 100
     counter: int = 0
     for direction, rotation in data:
-        if direction == "L":
-            rotation = 0 - rotation
-
-        delta: int = dial_number + rotation
-        dial_number: int = delta % dial_max
+        delta = 0 - rotation if direction == "L" else rotation
+        dial_number: int = (dial_number + delta) % dial_max
 
         if dial_number == 0:
             counter += 1
@@ -70,14 +67,8 @@ def solve_pt2(data) -> int:
     dial_max: int = 100
     counter: int = 0
     for direction, rotation in data:
-        if direction == "L":
-            rotation = 0 - rotation
-
-        delta: int = dial_number + rotation
-        dial_number: int = delta % dial_max
-
-        counter += abs(delta // dial_max)
-        # if dial_number == 0 and abs(delta) < dial_max:
-        #     counter += 1
+        delta = 0 - rotation if direction == "L" else rotation
+        counter += (dial_number + rotation) // dial_max
+        dial_number: int = (dial_number + delta) % dial_max
 
     return counter
