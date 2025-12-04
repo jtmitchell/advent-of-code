@@ -63,12 +63,11 @@ def solve_pt2(data) -> int:
     6835 is too low
     6951 is not correct
     """
-    dial_number: int = 50
-    dial_max: int = 100
-    counter: int = 0
-    for direction, rotation in data:
-        delta = 0 - rotation if direction == "L" else rotation
-        counter += (dial_number + rotation) // dial_max
-        dial_number: int = (dial_number + delta) % dial_max
+    from .dial import Dial
 
-    return counter
+    dial = Dial(position=50)
+
+    for direction, rotation in data:
+        dial.rotate(direction=direction, clicks=rotation)
+
+    return dial.zero_crossings
