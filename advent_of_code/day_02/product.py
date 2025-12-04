@@ -16,8 +16,16 @@ class Product:
         Invalid IDs are:
         * sequence of repeating digits.
 
+        So we can ignore numbers whose string length is odd.
+
         """
-        if self.id % 2 == 1:
+        id_str: str = str(self.id)
+        if len(id_str) % 2 == 1:
             return True
 
-        return False
+        # Divide the string into two parts
+        mid_len: int = len(id_str) // 2
+        start_part: str = id_str[:mid_len]
+        end_part: str = id_str[mid_len:]
+
+        return not bool(start_part == end_part)
