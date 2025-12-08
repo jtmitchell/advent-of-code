@@ -24,7 +24,7 @@ def test_puzzle_pt2() -> None:
     """
     Run a test against the sample input.
     """
-    expected_result = None
+    expected_result = 4174379265
     input_file: Path = pathlib.Path(__file__).with_name(name="sample.txt")
 
     data = load_data(datafile=input_file)

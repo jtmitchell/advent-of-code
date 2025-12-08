@@ -38,19 +38,27 @@ def solve_pt1(data: list[tuple[int, int]]) -> bool:
     """
     Solve the part one puzzle.
     """
-    from .product import Product
+    from .product import Product_pt1
 
     counter = 0
     for start, end in data:
         for i in range(start, end + 1):
-            p = Product(id=i)
+            p = Product_pt1(id=i)
             counter += 0 if p.is_valid() else p.id
 
     return counter
 
 
-def solve_pt2(data) -> bool:
+def solve_pt2(data: list[tuple[int, int]]) -> bool:
     """
     Solve the part two puzzle.
     """
-    return False
+    from .product import Product_pt2
+
+    counter = 0
+    for start, end in data:
+        for i in range(start, end + 1):
+            p = Product_pt2(id=i)
+            counter += 0 if p.is_valid() else p.id
+
+    return counter

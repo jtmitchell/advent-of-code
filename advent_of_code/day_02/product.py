@@ -2,11 +2,12 @@
 Dataclass for a Product.
 """
 
+import textwrap
 from dataclasses import dataclass
 
 
 @dataclass
-class Product:
+class Product_pt1:
     id: int
 
     def is_valid(self) -> bool:
@@ -29,3 +30,37 @@ class Product:
         end_part: str = id_str[mid_len:]
 
         return not bool(start_part == end_part)
+
+
+@dataclass
+class Product_pt2:
+    id: int
+
+    def is_valid(self) -> bool:
+        """
+        Return true if the ID is valid.
+
+        Invalid IDs are:
+        * sequence of repeating digits.
+
+        Loop through the string, splitting into 2, then 3, then 4
+        up to the length of the string, and check if each substring is equal.
+
+        """
+        id_str: str = str(self.id)
+        for num_parts in range(2, len(id_str)):
+            if self.is_repeating_string(parts=num_parts):
+                return False
+
+        return True
+
+    def is_repeating_string(self, parts: int) -> bool:
+        """Return True if all the substrings are equal."""
+        id_str: str = str(self.id)
+        if len(id_str) % parts == 1:
+            return False
+
+        # Divide the string into parts
+        substrings = textwrap.wrap(id_str, parts)
+
+        return len(set(substrings)) <= 1
