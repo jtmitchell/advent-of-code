@@ -2,7 +2,6 @@
 Dataclass for a Product.
 """
 
-import textwrap
 from dataclasses import dataclass
 
 
@@ -48,8 +47,9 @@ class Product_pt2:
 
         """
         id_str: str = str(self.id)
-        for num_parts in range(2, len(id_str)):
+        for num_parts in range(1, len(id_str)):
             if self.is_repeating_string(parts=num_parts):
+                self._num_parts = num_parts
                 return False
 
         return True
@@ -57,10 +57,6 @@ class Product_pt2:
     def is_repeating_string(self, parts: int) -> bool:
         """Return True if all the substrings are equal."""
         id_str: str = str(self.id)
-        if len(id_str) % parts == 1:
-            return False
-
         # Divide the string into parts
-        substrings = textwrap.wrap(id_str, parts)
-
-        return len(set(substrings)) <= 1
+        self._substrings = [id_str[i : i + parts] for i in range(0, len(id_str), parts)]
+        return len(set(self._substrings)) <= 1
