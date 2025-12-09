@@ -39,7 +39,7 @@ def solve_pt1(data: Iterable[PowerBank]) -> int:
     """
     Solve the part one puzzle.
     """
-    total_jotage = sum([i.jotage for i in data])
+    total_jotage = sum([i.jotage() for i in data])
     return total_jotage
 
 
@@ -47,4 +47,5 @@ def solve_pt2(data: Iterable[PowerBank]) -> int:
     """
     Solve the part two puzzle.
     """
-    return 0
+    total_jotage = sum([i.jotage(batteries=12) for i in data])
+    return total_jotage
