@@ -52,6 +52,10 @@ def solve_pt1(data: list[tuple[int, int]]) -> bool:
 def solve_pt2(data: list[tuple[int, int]]) -> bool:
     """
     Solve the part two puzzle.
+
+    The use of the set() to get unique values seems to make this very slow.
+    It might be a candidate for a Rust subpackage.
+
     """
     from .product import Product_pt2
 

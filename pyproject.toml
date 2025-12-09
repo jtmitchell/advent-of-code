@@ -11,6 +11,7 @@ dependencies = [
     "pre-commit-uv",
     "cookiecutter",
     "pytest",
+    "polars>=1.36.0",
 ]
 
 [tool.uv]
