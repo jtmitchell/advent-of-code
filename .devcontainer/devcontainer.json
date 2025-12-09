@@ -1,7 +1,6 @@
 {
   "name": "Advent of Code",
   "remoteUser": "vscode",
-  // "workspaceFolder": "/home/vscode/workspace",
   "build": {
     "dockerfile": "Dockerfile",
     "context": "..",
@@ -10,7 +9,7 @@
       "BASE_IMAGE": "ubuntu"
     }
   },
-  "mounts":[
+  "mounts": [
     "type=bind,source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,readonly"
   ],
   "postCreateCommand": "uv sync --frozen",
@@ -22,6 +21,12 @@
   "remoteEnv": {
     "PATH": "/home/vscode/.venv/bin:${containerEnv:PATH}"
   },
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
+  },
+  "runArgs": ["-p", "2020:2222"],
   "customizations": {
     "vscode": {
       "extensions": [

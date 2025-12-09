@@ -5,12 +5,12 @@ The batteries are arranged into banks; each line of digits in your input corresp
 
 You'll need to find the largest possible joltage each bank can produce. In the [above example](./sample.txt):
 
-    In 987654321111111, you can make the largest joltage possible, 98, by turning on the first two batteries.
-    In 811111111111119, you can make the largest joltage possible by turning on the batteries labeled 8 and 9, producing 89 jolts.
-    In 234234234234278, you can make 78 by turning on the last two batteries (marked 7 and 8).
-    In 818181911112111, the largest joltage you can produce is 92.
+- In ``987654321111111``, you can make the largest joltage possible, ``98``, by turning on the first two batteries.
+- In ``811111111111119``, you can make the largest joltage possible by turning on the batteries labeled 8 and 9, producing ``89`` jolts.
+- In ``234234234234278``, you can make ``78`` by turning on the last two batteries (marked 7 and 8).
+- In ``818181911112111``, the largest joltage you can produce is ``92``.
 
-The total output joltage is the sum of the maximum joltage from each bank, so in this example, the total output joltage is 98 + 89 + 78 + 92 = 357.
+The total output joltage is the sum of the maximum joltage from each bank, so in this example, the total output joltage is 98 + 89 + 78 + 92 = **357**.
 
 There are many batteries in front of you. Find the maximum joltage possible from each bank; what is the total output joltage?
 
@@ -21,16 +21,18 @@ The joltage output for the bank is still the number formed by the digits of the 
 
 Consider again the example from before:
 
+```
 987654321111111
 811111111111119
 234234234234278
 818181911112111
+```
 
 Now, the joltages are much larger:
 
-    In 987654321111111, the largest joltage can be found by turning on everything except some 1s at the end to produce 987654321111.
-    In the digit sequence 811111111111119, the largest joltage can be found by turning on everything except some 1s, producing 811111111119.
-    In 234234234234278, the largest joltage can be found by turning on everything except a 2 battery, a 3 battery, and another 2 battery near the start to produce 434234234278.
-    In 818181911112111, the joltage 888911112111 is produced by turning on everything except some 1s near the front.
+- In `987654321111111`, the largest joltage can be found by turning on everything except some 1s at the end to produce `987654321111`.
+- In the digit sequence `811111111111119`, the largest joltage can be found by turning on everything except some 1s, producing `811111111119`.
+- In `234234234234278`, the largest joltage can be found by turning on everything except a 2 battery, a 3 battery, and another 2 battery near the start to produce `434234234278`.
+- In `818181911112111`, the joltage `888911112111` is produced by turning on everything except some 1s near the front.
 
-The total output joltage is now much larger: 987654321111 + 811111111119 + 434234234278 + 888911112111 = 3121910778619.
+The total output joltage is now much larger: 987654321111 + 811111111119 + 434234234278 + 888911112111 = **3121910778619**.

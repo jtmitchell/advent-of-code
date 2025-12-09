@@ -14,7 +14,7 @@ ENV PYTHONDONTWRITEBYTECODE=True \
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        just ack jq wget curl \
+    just ack jq wget curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
