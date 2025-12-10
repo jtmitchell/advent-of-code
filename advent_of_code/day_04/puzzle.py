@@ -9,6 +9,10 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
+from utils.vector import Vector
+
+from .models import RoomLocation
+
 
 def run_puzzle(args: Namespace) -> None:
     """
@@ -23,21 +27,24 @@ def run_puzzle(args: Namespace) -> None:
     print(f"Result is {result}")
 
 
-def load_data(datafile: str) -> Iterable[str]:
+def load_data(datafile: str) -> Iterable[RoomLocation]:
     """
     Load the puzzle data.
     """
     print(f"loading {datafile}")
     with open(file=datafile, encoding="utf8") as fh:
-        for line in fh:
-            yield line.strip()
+        for line_num, line in enumerate(fh):
+            for position, i in enumerate(line.strip()):
+                yield RoomLocation(content=i, location=Vector(x=line_num, y=position))
 
 
 def solve_pt1(data) -> int:
     """
     Solve the part one puzzle.
     """
-    return None
+    room_locations = list(data)
+    accessible = [i for i in room_locations if i.is_paper() and i.is_accessible()]
+    return len(accessible)
 
 
 def solve_pt2(data) -> int:
