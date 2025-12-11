@@ -19,7 +19,6 @@ class PowerBank:
         joltage: list[str] = []
         position = 0
 
-        # TODO failing to handle the end boundary condition. 12 -11 -1 is -0. 12 - 12 -1 is worse
         for i in range(batteries - 1, -1, -1):
             search_space = self._value[position:-i] if i else self._value[position:]
             char = max(search_space)

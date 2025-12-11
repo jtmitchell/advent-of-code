@@ -11,7 +11,7 @@ from typing import Any
 
 from utils.vector import Vector
 
-from .models import RoomLocation
+from .models import Room, RoomLocation
 
 
 def run_puzzle(args: Namespace) -> None:
@@ -35,15 +35,16 @@ def load_data(datafile: str) -> Iterable[RoomLocation]:
     with open(file=datafile, encoding="utf8") as fh:
         for line_num, line in enumerate(fh):
             for position, i in enumerate(line.strip()):
-                yield RoomLocation(content=i, location=Vector(x=line_num, y=position))
+                yield RoomLocation(content=i, location=Vector(x=position, y=line_num))
 
 
 def solve_pt1(data) -> int:
     """
     Solve the part one puzzle.
     """
-    room_locations = list(data)
-    accessible = [i for i in room_locations if i.is_paper() and i.is_accessible()]
+    room = Room()
+    room.locations = list(data)
+    accessible = [i for i in room.locations if i.is_paper() and room.is_accessible(i)]
     return len(accessible)
 
 
