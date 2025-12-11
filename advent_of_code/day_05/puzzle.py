@@ -33,14 +33,24 @@ def load_data(datafile: str) -> Iterable[str]:
             yield line.strip()
 
 
-def solve_pt1(data) -> int:
+def solve_pt1(data: list[str]) -> int:
     """
     Solve the part one puzzle.
     """
-    return None
+    fresh_ids = set()
+    counter = 0
+    for line in data:
+        if "-" in line:
+            start, stop = line.split("-")
+            fresh_ids = fresh_ids.union(range(int(start), int(stop) + 1))
+        elif line:
+            id = int(line)
+            counter += 1 if id in fresh_ids else 0
+
+    return counter
 
 
-def solve_pt2(data) -> int:
+def solve_pt2(data: list[str]) -> int:
     """
     Solve the part two puzzle.
     """
