@@ -53,8 +53,7 @@ def solve_pt2(data) -> int:
     """
     room = Room(data=data)
     removed = 0
-    do_loop = True
-    while do_loop:
+    while True:
         # Find the locations with accessible paper rolls
         accessible = [
             i for i in room.locations.values() if i.is_paper() and room.is_accessible(i)
