@@ -9,6 +9,8 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
+from advent_of_code.day_05.models import FreshFruit
+
 
 def run_puzzle(args: Namespace) -> None:
     """
@@ -37,15 +39,15 @@ def solve_pt1(data: list[str]) -> int:
     """
     Solve the part one puzzle.
     """
-    fresh_ids = set()
+    stock_list = FreshFruit()
     counter = 0
     for line in data:
         if "-" in line:
             start, stop = line.split("-")
-            fresh_ids = fresh_ids.union(range(int(start), int(stop) + 1))
+            stock_list.add_range(range=(int(start), int(stop) + 1))
         elif line:
             id = int(line)
-            counter += 1 if id in fresh_ids else 0
+            counter += 1 if stock_list.is_fresh(id) else 0
 
     return counter
 
