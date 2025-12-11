@@ -23,9 +23,11 @@ class RoomLocation:
         return self.content == Content.PAPER.value
 
 
-@dataclass
 class Room:
     locations: dict[Vector, RoomLocation] = field(default_factory=dict)
+
+    def __init__(self, data: list[RoomLocation]) -> None:
+        self.locations = {i.location: i for i in data}
 
     def is_accessible(
         self,

@@ -11,7 +11,7 @@ from typing import Any
 
 from utils.vector import Vector
 
-from .models import Room, RoomLocation
+from .models import Content, Room, RoomLocation
 
 
 def run_puzzle(args: Namespace) -> None:
@@ -42,8 +42,7 @@ def solve_pt1(data) -> int:
     """
     Solve the part one puzzle.
     """
-    room = Room()
-    room.locations = {i.location: i for i in list(data)}
+    room = Room(data=data)
     accessible = [i for i in room.locations.values() if i.is_paper() and room.is_accessible(i)]
     return len(accessible)
 
@@ -52,4 +51,23 @@ def solve_pt2(data) -> int:
     """
     Solve the part two puzzle.
     """
-    return None
+    room = Room(data=data)
+    removed = 0
+    do_loop = True
+    while do_loop:
+        # Find the locations with accessible paper rolls
+        accessible = [
+            i for i in room.locations.values() if i.is_paper() and room.is_accessible(i)
+        ]
+
+        # If there are no more accessible locations, we are finished
+        if not accessible:
+            break
+
+        # Remove the accessible paper rolls
+        for i in accessible:
+            i.content = Content.EMPTY.value
+
+        removed += len(accessible)
+
+    return removed
