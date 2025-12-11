@@ -43,8 +43,8 @@ def solve_pt1(data) -> int:
     Solve the part one puzzle.
     """
     room = Room()
-    room.locations = list(data)
-    accessible = [i for i in room.locations if i.is_paper() and room.is_accessible(i)]
+    room.locations = {i.location: i for i in list(data)}
+    accessible = [i for i in room.locations.values() if i.is_paper() and room.is_accessible(i)]
     return len(accessible)
 
 
