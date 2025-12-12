@@ -30,7 +30,7 @@ def test_puzzle_pt1(expected_result, filename) -> None:
 @pytest.mark.parametrize(
     "expected_result, filename",  # noqa: PT006
     [
-        (None, "sample.txt"),
+        (14, "sample.txt"),
     ],
 )
 def test_puzzle_pt2(expected_result, filename) -> None:

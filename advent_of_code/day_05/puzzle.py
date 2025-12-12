@@ -56,4 +56,10 @@ def solve_pt2(data: list[str]) -> int:
     """
     Solve the part two puzzle.
     """
-    return None
+    stock_list = FreshFruit()
+    for line in data:
+        if "-" in line:
+            start, stop = line.split("-")
+            stock_list.add_range(range=(int(start), int(stop) + 1))
+
+    return stock_list.fresh_stock_count()
