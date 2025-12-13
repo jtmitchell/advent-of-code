@@ -8,3 +8,4 @@ Code to solve the [2025 Advent of Code](https://adventofcode.com/2025) puzzles.
 * [Day 3: Lobby](./day_03/README.md)
 * [Day 4: Printing Department](./day_04/README.md)
 * [Day 5: Cafeteria](./day_05/README.md)
+* [Day 6: Trash Compactor](./day_06/README.md)
