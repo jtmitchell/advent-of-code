@@ -1,22 +1,24 @@
-image: python:3.12
 variables:
-  UV_CACHE_DIR: "$CI_PROJECT_DIR/.cache/uv/"
+  BASE_LAYER: bookworm-slim
+  PYTHON_VERSION: "3.12"
+  UV_CACHE_DIR: .uv-cache
+  UV_LINK_MODE: copy
+  UV_VERSION: "0.9.17"
 
 cache:
-  paths:
-    - .cache/uv/
-    - .venv/
-
-before_script:
-  - pip install --root-user-action=ignore uv==$UV_INSTALL_VERSION
-  # - uv python install
-  - uv sync --locked
+  - key:
+      files:
+        - uv.lock
+    paths:
+      - $UV_CACHE_DIR
 
 stages:
-- test
+  - test
 
 pytest:
+  image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-$BASE_LAYER
   stage: test
   script:
     - uv run pytest
     - uv run pre-commit run --all-files
+    - uv cache prune --ci
