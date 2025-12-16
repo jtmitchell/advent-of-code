@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  tests:
+    name: pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: extractions/setup-just@v3
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Run tests
+        run: just test
