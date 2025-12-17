@@ -9,6 +9,8 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
+from .models import Room
+
 
 def run_puzzle(args: Namespace) -> None:
     """
@@ -33,14 +35,19 @@ def load_data(datafile: str) -> Iterable[str]:
             yield line.strip()
 
 
-def solve_pt1(data) -> int:
+def solve_pt1(data: list[str]) -> int:
     """
     Solve the part one puzzle.
     """
+    room = Room()
+
+    for line_num, line in enumerate(data):
+        room.add_line(line=line, line_num=line_num)
+
     return None
 
 
-def solve_pt2(data) -> int:
+def solve_pt2(data: list[str]) -> int:
     """
     Solve the part two puzzle.
     """
