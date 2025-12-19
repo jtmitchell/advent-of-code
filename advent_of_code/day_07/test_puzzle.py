@@ -3,6 +3,7 @@ Unit test for Day 7: Laboratories
 """
 
 import pathlib
+from contextlib import nullcontext
 from pathlib import Path
 
 import pytest
@@ -23,8 +24,13 @@ def test_puzzle_pt1(expected_result, filename) -> None:
     input_file: Path = pathlib.Path(__file__).with_name(name=filename)
 
     data = load_data(datafile=input_file)
-    result: int = solve_pt1(data)
-    assert result == expected_result
+
+    context = pytest.raises(NotImplementedError) if expected_result is None else nullcontext()
+    with context:
+        result: int = solve_pt1(data)
+
+    if expected_result:
+        assert result == expected_result
 
 
 @pytest.mark.parametrize(
@@ -40,5 +46,10 @@ def test_puzzle_pt2(expected_result, filename) -> None:
     input_file: Path = pathlib.Path(__file__).with_name(name=filename)
 
     data = load_data(datafile=input_file)
-    result: int = solve_pt2(data)
-    assert result == expected_result
+
+    context = pytest.raises(NotImplementedError) if expected_result is None else nullcontext()
+    with context:
+        result: int = solve_pt2(data)
+
+    if expected_result:
+        assert result == expected_result

@@ -19,11 +19,11 @@ def run_puzzle(args: Namespace) -> None:
     data: Any = load_data(datafile=input_file)
 
     # Print the solution
-    result: bool = solve_pt1(data) if not args.part2 else solve_pt2(data)
+    result: int = solve_pt1(data) if not args.part2 else solve_pt2(data)
     print(f"Result is {result}")
 
 
-def load_data(datafile: str) -> Iterable[str]:
+def load_data(datafile: Path) -> Iterable[str]:
     """
     Load the puzzle data.
     """
@@ -33,15 +33,15 @@ def load_data(datafile: str) -> Iterable[str]:
             yield line.strip()
 
 
-def solve_pt1(data) -> int:
+def solve_pt1(data: Iterable[str]) -> int:
     """
     Solve the part one puzzle.
     """
-    return None
+    raise NotImplementedError()
 
 
-def solve_pt2(data) -> int:
+def solve_pt2(data: Iterable[str]) -> int:
     """
     Solve the part two puzzle.
     """
-    return None
+    raise NotImplementedError()

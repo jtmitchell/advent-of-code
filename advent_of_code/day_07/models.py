@@ -2,26 +2,27 @@
 Models for Day 7: Laboratories.
 """
 
-from dataclasses import dataclass
+from dataclasses import astuple, dataclass, field
 
 from utils.vector import Vector
+
+
+@dataclass(unsafe_hash=True)
+class BeamPath:
+    start: Vector | None = None
+    end: Vector | None = None
+
+    def __iter__(self):
+        return iter(astuple(self))
 
 
 @dataclass
 class Room:
     start_pt: Vector | None = None
-    splitters: list[Vector] | None = None
-    beams: set[Vector] | None = None
-    beam_counter: int = 0
+    splitters: list[Vector] = field(default_factory=list)
+    beams: set[BeamPath] = field(default_factory=set)
     max_x: int = 0
     max_y: int = 0
-
-    def __post_init__(self):
-        if self.splitters is None:
-            self.splitters = []
-
-        if self.beams is None:
-            self.beams = set()
 
     def add_line(self, line: str, line_num: int) -> None:
         self.max_y = line_num
@@ -38,19 +39,18 @@ class Room:
                 case _:
                     pass
 
-    def activate_beam(self):
-        self.beams.add(self.start_pt)
-        for point in self.beams:
-            next_pt, new_beams = self.move_beam(start_pt=point)
+    def activate_beam(self) -> int:
+        self.beams = self.emit_beam(start_pt=self.start_pt)
+        return len(self.beams)
 
-    def move_beam(self, start_pt: Vector) -> tuple[Vector | None, set[Vector]]:
+    def emit_beam(self, start_pt: Vector) -> set[BeamPath]:
         delta_y = Vector(x=0, y=-1)
         next_pt = start_pt + delta_y
-        new_beams = set()
+        new_beams = set(BeamPath(start=start_pt))
 
         if next_pt.y < 0:
             # Reached the bottom
-            return None, new_beams
+            return new_beams
 
         if next_pt in self.splitters:
             # Split the beam and check the new start points
@@ -66,6 +66,6 @@ class Room:
                     # Ignore anything that is outside the room
                     continue
 
-                new_beams.add(new_beam_start)
+                new_beams.union(self.emit_beam(start_pt=new_beam_start))
 
-        return next_pt, new_beams
+        return new_beams
